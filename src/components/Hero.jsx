@@ -5,7 +5,8 @@ import FloatingBadges from './FloatingBadges';
 
 export default function Hero({ onOpenContact }) {
   const { scrollY } = useScroll();
-  const yParallax = useTransform(scrollY, [0, 800], [0, 80]);
+  // Subtle upward lift on scroll so buttons never descend into the marquee banner
+  const yParallax = useTransform(scrollY, [0, 600], [0, -30]);
   const opacityParallax = useTransform(scrollY, [0, 500], [1, 0.3]);
 
   const scrollToWork = (e) => {
@@ -22,15 +23,16 @@ export default function Hero({ onOpenContact }) {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen pt-28 pb-16 md:pt-36 md:pb-24 flex flex-col justify-between overflow-hidden bg-[#0A090F]">
+    <section id="hero" className="relative min-h-[90vh] sm:min-h-screen pt-28 pb-20 md:pt-36 md:pb-28 flex flex-col justify-between overflow-hidden bg-[#0A090F]">
       {/* Background Glow Gradients */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[600px] md:w-[850px] h-[340px] sm:h-[450px] bg-gradient-to-tr from-[#FF5C00]/20 via-[#7C3AED]/15 to-transparent rounded-full blur-[100px] sm:blur-[140px] pointer-events-none animate-pulse-glow" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 my-auto">
+      {/* Main Content Area */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 my-auto py-6 md:py-10">
         {/* Absolute Scattered Badges Layer on Sides */}
         <FloatingBadges />
 
-        <motion.div style={{ y: yParallax, opacity: opacityParallax }} className="text-center max-w-4xl mx-auto relative z-20">
+        <motion.div style={{ y: yParallax, opacity: opacityParallax }} className="text-center max-w-4xl mx-auto relative z-20 mb-8 md:mb-12">
           {/* Top Badge Pill */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -100,7 +102,7 @@ export default function Hero({ onOpenContact }) {
       </div>
 
       {/* Marquee Banner */}
-      <div className="w-full border-y border-white/10 py-3 bg-black/50 backdrop-blur-md overflow-hidden select-none relative z-20">
+      <div className="w-full border-y border-white/10 py-3.5 bg-black/60 backdrop-blur-md overflow-hidden select-none relative z-20 mt-auto">
         <div className="animate-marquee whitespace-nowrap flex items-center gap-6 sm:gap-8 text-[11px] sm:text-xs font-mono uppercase tracking-widest text-zinc-400">
           <span className="flex items-center gap-2 text-[#FF5C00] font-bold">
             <Flame className="w-3.5 h-3.5" /> BRANDING & IDENTITY
