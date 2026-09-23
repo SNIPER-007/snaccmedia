@@ -5,7 +5,7 @@ import FloatingBadges from './FloatingBadges';
 
 export default function Hero({ onOpenContact }) {
   const { scrollY } = useScroll();
-  const yParallax = useTransform(scrollY, [0, 800], [0, 100]);
+  const yParallax = useTransform(scrollY, [0, 800], [0, 80]);
   const opacityParallax = useTransform(scrollY, [0, 500], [1, 0.3]);
 
   const scrollToWork = (e) => {
@@ -22,12 +22,12 @@ export default function Hero({ onOpenContact }) {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen pt-28 pb-16 md:pt-40 md:pb-28 flex flex-col justify-between overflow-hidden bg-[#0A090F]">
+    <section id="hero" className="relative min-h-screen pt-28 pb-16 md:pt-36 md:pb-24 flex flex-col justify-between overflow-hidden bg-[#0A090F]">
       {/* Background Glow Gradients */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[600px] md:w-[900px] h-[340px] sm:h-[500px] bg-gradient-to-tr from-[#FF5C00]/20 via-[#7C3AED]/15 to-transparent rounded-full blur-[100px] sm:blur-[140px] pointer-events-none animate-pulse-glow" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[600px] md:w-[850px] h-[340px] sm:h-[450px] bg-gradient-to-tr from-[#FF5C00]/20 via-[#7C3AED]/15 to-transparent rounded-full blur-[100px] sm:blur-[140px] pointer-events-none animate-pulse-glow" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 my-auto">
-        <motion.div style={{ y: yParallax, opacity: opacityParallax }} className="text-center max-w-5xl mx-auto">
+        <motion.div style={{ y: yParallax, opacity: opacityParallax }} className="text-center max-w-5xl mx-auto relative z-10">
           {/* Top Badge Pill */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -69,16 +69,16 @@ export default function Hero({ onOpenContact }) {
             Strategy, creativity and execution that turn ideas into brands people remember.
           </motion.p>
 
-          {/* Action Buttons */}
+          {/* Action Buttons (High z-index z-30 to ensure zero blurring/overlap) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-6"
+            className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-6 relative z-30 pointer-events-auto"
           >
             <button
               onClick={onOpenContact}
-              className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-[#FF5C00] to-[#FF8A00] text-white font-display font-bold text-sm uppercase tracking-wider shadow-xl shadow-[#FF5C00]/30 hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-3 group cursor-pointer"
+              className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-[#FF5C00] to-[#FF8A00] text-white font-display font-bold text-sm uppercase tracking-wider shadow-2xl shadow-[#FF5C00]/40 hover:shadow-[#FF5C00]/60 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-3 group cursor-pointer border border-[#FF8A00]/50"
             >
               <span>WORK WITH US</span>
               <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -87,7 +87,7 @@ export default function Hero({ onOpenContact }) {
             <a
               href="#work"
               onClick={scrollToWork}
-              className="w-full sm:w-auto px-8 py-4 rounded-full glass-panel text-zinc-200 font-display font-bold text-sm uppercase tracking-wider hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 flex items-center justify-center gap-3 group cursor-pointer border border-white/10"
+              className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#181524] text-zinc-100 font-display font-bold text-sm uppercase tracking-wider hover:text-white hover:bg-[#201C30] transition-all duration-300 flex items-center justify-center gap-3 group cursor-pointer border border-white/20 shadow-xl"
             >
               <span>VIEW OUR WORK</span>
               <Play className="w-4 h-4 text-[#FF5C00] fill-[#FF5C00] transition-transform group-hover:scale-110" />
@@ -95,12 +95,12 @@ export default function Hero({ onOpenContact }) {
           </motion.div>
         </motion.div>
 
-        {/* Creative Badges */}
+        {/* Floating Badges (Positioned cleanly below/flanking the hero content) */}
         <FloatingBadges />
       </div>
 
       {/* Marquee Banner */}
-      <div className="w-full border-y border-white/10 py-3 bg-black/40 backdrop-blur-md overflow-hidden select-none">
+      <div className="w-full border-y border-white/10 py-3 bg-black/50 backdrop-blur-md overflow-hidden select-none relative z-20">
         <div className="animate-marquee whitespace-nowrap flex items-center gap-6 sm:gap-8 text-[11px] sm:text-xs font-mono uppercase tracking-widest text-zinc-400">
           <span className="flex items-center gap-2 text-[#FF5C00] font-bold">
             <Flame className="w-3.5 h-3.5" /> BRANDING & IDENTITY
