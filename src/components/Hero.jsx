@@ -5,7 +5,6 @@ import FloatingBadges from './FloatingBadges';
 
 export default function Hero({ onOpenContact }) {
   const { scrollY } = useScroll();
-  // Subtle upward lift on scroll so buttons never descend into the marquee banner
   const yParallax = useTransform(scrollY, [0, 600], [0, -30]);
   const opacityParallax = useTransform(scrollY, [0, 500], [1, 0.3]);
 
@@ -28,11 +27,11 @@ export default function Hero({ onOpenContact }) {
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[600px] md:w-[850px] h-[340px] sm:h-[450px] bg-gradient-to-tr from-[#FF5C00]/20 via-[#7C3AED]/15 to-transparent rounded-full blur-[100px] sm:blur-[140px] pointer-events-none animate-pulse-glow" />
 
       {/* Main Content Area */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 my-auto py-6 md:py-10">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 w-full relative z-10 my-auto py-6 md:py-10">
         {/* Absolute Scattered Badges Layer on Sides */}
         <FloatingBadges />
 
-        <motion.div style={{ y: yParallax, opacity: opacityParallax }} className="text-center max-w-4xl mx-auto relative z-20 mb-8 md:mb-12">
+        <motion.div style={{ y: yParallax, opacity: opacityParallax }} className="text-center max-w-5xl mx-auto relative z-20 mb-8 md:mb-12">
           {/* Top Badge Pill */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -51,12 +50,12 @@ export default function Hero({ onOpenContact }) {
             <span className="text-[10px] sm:text-xs font-semibold text-amber-400 hidden sm:inline">Available For Q4 Projects</span>
           </motion.div>
 
-          {/* Main Headline */}
+          {/* Main Headline (Sized dynamically to prevent any letter overflow) */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-display font-extrabold text-4xl sm:text-7xl md:text-8xl lg:text-[100px] tracking-tight leading-[1.02] sm:leading-[0.95] text-white uppercase text-balance"
+            className="font-display font-extrabold text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[92px] tracking-tight leading-[1.02] sm:leading-[0.95] text-white uppercase px-1 max-w-full break-words"
           >
             WE MAKE BRANDS{' '}
             <span className="block mt-2 bg-gradient-to-r from-[#FF5C00] via-[#FF8A00] to-[#ECEE52] bg-clip-text text-transparent drop-shadow-sm">

@@ -1,6 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function Logo({ className = "h-8", showImageOnly = false }) {
+/**
+ * Logo Component
+ * Renders the SNACC MEDIA vector logo or optional image fallback (/snaccmedia-logo.png)
+ * Recommended dimensions for navbar image logos: Height: 32px - 40px (h-8 to h-10), Width: auto
+ */
+export default function Logo({ className = "h-8", useImageLogo = false }) {
+  const [imageError, setImageError] = useState(false);
+
+  if (useImageLogo && !imageError) {
+    return (
+      <img
+        src="/snaccmedia-logo.png"
+        alt="SNACC MEDIA Logo"
+        onError={() => setImageError(true)}
+        className={`w-auto object-contain select-none ${className}`}
+      />
+    );
+  }
+
   return (
     <div className={`flex items-center gap-2.5 select-none ${className}`}>
       {/* Brand Icon SVG matching SNACC MEDIA official bean logo mark */}
@@ -31,12 +49,10 @@ export default function Logo({ className = "h-8", showImageOnly = false }) {
         </svg>
       </div>
 
-      {!showImageOnly && (
-        <div className="flex items-center font-display font-black text-xl tracking-tight leading-none">
-          <span className="text-white drop-shadow-sm">snacc</span>
-          <span className="text-[#FF9F00] ml-0.5">media</span>
-        </div>
-      )}
+      <div className="flex items-center font-display font-black text-xl tracking-tight leading-none">
+        <span className="text-white drop-shadow-sm">snacc</span>
+        <span className="text-[#FF9F00] ml-0.5">media</span>
+      </div>
     </div>
   );
 }
