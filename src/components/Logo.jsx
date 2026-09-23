@@ -2,28 +2,32 @@ import React, { useState } from 'react';
 
 /**
  * Logo Component
- * Renders the official SNACC MEDIA logo image (/snaccmedia-logo.png) instead of plain text.
+ * Displays the prominent SNACC MEDIA logo image (/snaccmedia-logo.png)
+ * Scaled substantially for major studio prominence:
+ * Desktop: ~170-190px width
+ * Tablet: ~145-165px width
+ * Mobile: ~130-150px width
  */
-export default function Logo({ className = "h-8 sm:h-9", forceVector = false }) {
+export default function Logo({ className = "w-[135px] sm:w-[155px] md:w-[175px] lg:w-[190px] h-auto", forceVector = false }) {
   const [imageError, setImageError] = useState(false);
 
   if (!forceVector && !imageError) {
     return (
-      <div className={`flex items-center ${className}`}>
+      <div className="flex items-center">
         <img
           src="/snaccmedia-logo.png"
           alt="SNACC MEDIA Logo"
           onError={() => setImageError(true)}
-          className="h-full w-auto object-contain select-none filter drop-shadow-sm"
+          className={`object-contain select-none filter drop-shadow-md transition-all duration-300 ${className}`}
         />
       </div>
     );
   }
 
-  // Fallback SVG mark
+  // SVG Fallback mark
   return (
-    <div className={`flex items-center gap-2.5 select-none ${className}`}>
-      <div className="relative w-8 h-8 flex-shrink-0 flex items-center justify-center">
+    <div className="flex items-center gap-2.5 select-none">
+      <div className="relative w-9 h-9 sm:w-11 sm:h-11 flex-shrink-0 flex items-center justify-center">
         <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full drop-shadow-[0_2px_8px_rgba(255,92,0,0.4)]">
           <defs>
             <linearGradient id="snaccBeanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -48,7 +52,7 @@ export default function Logo({ className = "h-8 sm:h-9", forceVector = false }) 
         </svg>
       </div>
 
-      <div className="flex items-center font-display font-black text-xl tracking-tight leading-none">
+      <div className="flex items-center font-display font-black text-2xl sm:text-3xl tracking-tight leading-none">
         <span className="text-white drop-shadow-sm">snacc</span>
         <span className="text-[#FF9F00] ml-0.5">media</span>
       </div>
