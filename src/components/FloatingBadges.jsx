@@ -3,17 +3,20 @@ import { motion } from 'framer-motion';
 import { Palette, Share2, Layout, Megaphone } from 'lucide-react';
 
 const badges = [
-  { icon: Palette, label: "Branding", color: "from-orange-500 to-amber-500", text: "text-orange-400", pos: "-top-12 -left-2 md:-left-8 lg:-left-16 xl:-left-20", delay: 0 },
-  { icon: Share2, label: "Social Media", color: "from-purple-500 to-indigo-500", text: "text-purple-400", pos: "-top-10 -right-2 md:-right-8 lg:-right-16 xl:-right-20", delay: 0.3 },
-  { icon: Layout, label: "Web Design", color: "from-blue-500 to-cyan-500", text: "text-blue-400", pos: "top-20 -left-4 md:-left-10 lg:-left-20 xl:-left-28", delay: 0.6 },
-  { icon: Megaphone, label: "PR & Marketing", color: "from-pink-500 to-rose-500", text: "text-pink-400", pos: "top-24 -right-4 md:-right-10 lg:-right-20 xl:-right-28", delay: 0.9 },
+  // Left side scattered vertically (Headline & Subtitle level)
+  { icon: Palette, label: "Branding", color: "from-orange-500 to-amber-500", text: "text-orange-400", pos: "top-12 left-1 md:-left-4 lg:-left-12 xl:-left-16", delay: 0 },
+  { icon: Layout, label: "Web Design", color: "from-blue-500 to-cyan-500", text: "text-blue-400", pos: "top-56 left-2 md:-left-2 lg:-left-8 xl:-left-12", delay: 0.6 },
+  
+  // Right side scattered vertically (Headline & Subtitle level)
+  { icon: Share2, label: "Social Media", color: "from-purple-500 to-indigo-500", text: "text-purple-400", pos: "top-16 right-1 md:-right-4 lg:-right-12 xl:-right-16", delay: 0.3 },
+  { icon: Megaphone, label: "PR & Marketing", color: "from-pink-500 to-rose-500", text: "text-pink-400", pos: "top-60 right-2 md:-right-2 lg:-right-8 xl:-right-12", delay: 0.9 },
 ];
 
 export default function FloatingBadges() {
   return (
-    <div className="w-full max-w-7xl mx-auto relative mt-6 sm:mt-10 pointer-events-none">
-      {/* Mobile Horizontal Pill Row (Decoupled below content) */}
-      <div className="flex sm:hidden overflow-x-auto no-scrollbar gap-2.5 py-2 px-1 justify-start pointer-events-auto">
+    <>
+      {/* Mobile Horizontal Pill Row */}
+      <div className="flex sm:hidden overflow-x-auto no-scrollbar gap-2.5 py-2 px-1 justify-start mt-6 relative z-20 pointer-events-auto">
         {badges.map((badge) => {
           const IconComponent = badge.icon;
           return (
@@ -34,8 +37,8 @@ export default function FloatingBadges() {
         })}
       </div>
 
-      {/* Desktop & Tablet Floating Side Badges (Positioned at extreme outer boundaries leaving the center completely empty) */}
-      <div className="hidden sm:block relative w-full h-24 pointer-events-none">
+      {/* Desktop & Tablet Scattered Floating Side Badges (Spanning top to middle along left/right flanks) */}
+      <div className="hidden sm:block absolute inset-0 pointer-events-none z-10 overflow-visible">
         {badges.map((badge, idx) => {
           const IconComponent = badge.icon;
           return (
@@ -44,19 +47,19 @@ export default function FloatingBadges() {
               initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: badge.delay }}
-              className={`absolute ${badge.pos} pointer-events-auto z-10`}
+              className={`absolute ${badge.pos} pointer-events-auto`}
             >
               <motion.div
                 animate={{
-                  y: [0, idx % 2 === 0 ? -8 : 8, 0],
-                  rotate: [0, idx % 2 === 0 ? 1.5 : -1.5, 0]
+                  y: [0, idx % 2 === 0 ? -10 : 10, 0],
+                  rotate: [0, idx % 2 === 0 ? 2 : -2, 0]
                 }}
                 transition={{
                   duration: 4.5 + idx,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                className="glass-card px-3.5 py-2 rounded-2xl flex items-center gap-2 shadow-xl border border-white/15 hover:border-white/35 transition-all duration-300 hover:scale-105 cursor-pointer backdrop-blur-sm"
+                className="glass-card px-3.5 py-2 rounded-2xl flex items-center gap-2.5 shadow-xl border border-white/15 hover:border-white/35 transition-all duration-300 hover:scale-105 cursor-pointer backdrop-blur-sm"
               >
                 <div className={`w-7 h-7 rounded-xl bg-gradient-to-br ${badge.color} p-0.5 flex items-center justify-center shadow-md`}>
                   <div className="w-full h-full bg-[#0A090F]/80 rounded-[9px] flex items-center justify-center">
@@ -72,6 +75,6 @@ export default function FloatingBadges() {
           );
         })}
       </div>
-    </div>
+    </>
   );
 }

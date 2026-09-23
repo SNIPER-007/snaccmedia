@@ -27,7 +27,10 @@ export default function Hero({ onOpenContact }) {
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[600px] md:w-[850px] h-[340px] sm:h-[450px] bg-gradient-to-tr from-[#FF5C00]/20 via-[#7C3AED]/15 to-transparent rounded-full blur-[100px] sm:blur-[140px] pointer-events-none animate-pulse-glow" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 my-auto">
-        <motion.div style={{ y: yParallax, opacity: opacityParallax }} className="text-center max-w-5xl mx-auto relative z-10">
+        {/* Absolute Scattered Badges Layer on Sides */}
+        <FloatingBadges />
+
+        <motion.div style={{ y: yParallax, opacity: opacityParallax }} className="text-center max-w-4xl mx-auto relative z-20">
           {/* Top Badge Pill */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -51,7 +54,7 @@ export default function Hero({ onOpenContact }) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-display font-extrabold text-4xl sm:text-7xl md:text-8xl lg:text-[105px] tracking-tight leading-[1.02] sm:leading-[0.95] text-white uppercase text-balance"
+            className="font-display font-extrabold text-4xl sm:text-7xl md:text-8xl lg:text-[100px] tracking-tight leading-[1.02] sm:leading-[0.95] text-white uppercase text-balance"
           >
             WE MAKE BRANDS{' '}
             <span className="block mt-2 bg-gradient-to-r from-[#FF5C00] via-[#FF8A00] to-[#ECEE52] bg-clip-text text-transparent drop-shadow-sm">
@@ -64,12 +67,12 @@ export default function Hero({ onOpenContact }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-6 sm:mt-8 text-base sm:text-xl md:text-2xl text-zinc-300 max-w-3xl mx-auto font-light leading-relaxed text-balance px-2"
+            className="mt-6 sm:mt-8 text-base sm:text-xl md:text-2xl text-zinc-300 max-w-2xl mx-auto font-light leading-relaxed text-balance px-2"
           >
             Strategy, creativity and execution that turn ideas into brands people remember.
           </motion.p>
 
-          {/* Action Buttons (High z-index z-30 to ensure zero blurring/overlap) */}
+          {/* Action Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -94,9 +97,6 @@ export default function Hero({ onOpenContact }) {
             </a>
           </motion.div>
         </motion.div>
-
-        {/* Floating Badges (Positioned cleanly below/flanking the hero content) */}
-        <FloatingBadges />
       </div>
 
       {/* Marquee Banner */}
