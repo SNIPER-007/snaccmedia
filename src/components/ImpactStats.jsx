@@ -79,7 +79,7 @@ export default function ImpactStats() {
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 className="glass-card p-3.5 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl text-center border border-white/10 hover:border-[#FF5C00]/40 transition-all duration-300 hover:scale-[1.02] group flex flex-col justify-between overflow-hidden"
               >
-                <div className="overflow-hidden">
+                <div>
                   <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-3 text-[#FF5C00] group-hover:bg-[#FF5C00] group-hover:text-white transition-all duration-300">
                     <IconComponent className="w-4 h-4 sm:w-6 sm:h-6" />
                   </div>
@@ -88,12 +88,13 @@ export default function ImpactStats() {
                     <Counter targetValue={stat.value} suffix={stat.suffix} />
                   </div>
 
-                  <h3 className="font-display font-bold text-[11px] sm:text-base text-zinc-200 uppercase tracking-wide group-hover:text-[#FF5C00] transition-colors truncate">
+                  {/* 2-Line Label Title */}
+                  <h3 className="font-display font-bold text-[11px] sm:text-base text-zinc-200 uppercase tracking-wide group-hover:text-[#FF5C00] transition-colors line-clamp-2 leading-tight min-h-[2.2rem] flex items-center justify-center">
                     {stat.label}
                   </h3>
                 </div>
 
-                <p className="mt-1.5 text-[10px] sm:text-xs text-zinc-400 font-light line-clamp-2">
+                <p className="mt-2 text-[10px] sm:text-xs text-zinc-400 font-light line-clamp-2">
                   {stat.description}
                 </p>
               </motion.div>
