@@ -3,20 +3,20 @@ import { motion } from 'framer-motion';
 import { Palette, Share2, Layout, Megaphone } from 'lucide-react';
 
 const badges = [
-  // Left side scattered vertically (Headline & Subtitle level)
-  { icon: Palette, label: "Branding", color: "from-orange-500 to-amber-500", text: "text-orange-400", pos: "top-12 left-1 md:-left-4 lg:-left-12 xl:-left-16", delay: 0 },
-  { icon: Layout, label: "Web Design", color: "from-blue-500 to-cyan-500", text: "text-blue-400", pos: "top-56 left-2 md:-left-2 lg:-left-8 xl:-left-12", delay: 0.6 },
+  // Left side safely in upper hero region
+  { icon: Palette, label: "Branding", color: "from-orange-500 to-amber-500", text: "text-orange-400", pos: "top-4 left-1 md:-left-4 lg:-left-10 xl:-left-14", delay: 0 },
+  { icon: Layout, label: "Web Design", color: "from-blue-500 to-cyan-500", text: "text-blue-400", pos: "top-28 left-2 md:-left-2 lg:-left-6 xl:-left-10", delay: 0.6 },
   
-  // Right side scattered vertically (Headline & Subtitle level)
-  { icon: Share2, label: "Social Media", color: "from-purple-500 to-indigo-500", text: "text-purple-400", pos: "top-16 right-1 md:-right-4 lg:-right-12 xl:-right-16", delay: 0.3 },
-  { icon: Megaphone, label: "PR & Marketing", color: "from-pink-500 to-rose-500", text: "text-pink-400", pos: "top-60 right-2 md:-right-2 lg:-right-8 xl:-right-12", delay: 0.9 },
+  // Right side safely in upper hero region
+  { icon: Share2, label: "Social Media", color: "from-purple-500 to-indigo-500", text: "text-purple-400", pos: "top-6 right-1 md:-right-4 lg:-right-10 xl:-right-14", delay: 0.3 },
+  { icon: Megaphone, label: "PR & Marketing", color: "from-pink-500 to-rose-500", text: "text-pink-400", pos: "top-32 right-2 md:-right-2 lg:-right-6 xl:-right-10", delay: 0.9 },
 ];
 
 export default function FloatingBadges() {
   return (
     <>
       {/* Mobile Horizontal Pill Row */}
-      <div className="flex sm:hidden overflow-x-auto no-scrollbar gap-2.5 py-2 px-1 justify-start mt-6 relative z-20 pointer-events-auto">
+      <div className="flex sm:hidden overflow-x-auto no-scrollbar gap-2.5 py-2 px-1 justify-start mt-4 relative z-20 pointer-events-auto">
         {badges.map((badge) => {
           const IconComponent = badge.icon;
           return (
@@ -37,7 +37,7 @@ export default function FloatingBadges() {
         })}
       </div>
 
-      {/* Desktop & Tablet Scattered Floating Side Badges (Spanning top to middle along left/right flanks) */}
+      {/* Desktop & Tablet Upper Side Badges (Positioned strictly in upper hero area) */}
       <div className="hidden sm:block absolute inset-0 pointer-events-none z-10 overflow-visible">
         {badges.map((badge, idx) => {
           const IconComponent = badge.icon;
@@ -51,8 +51,8 @@ export default function FloatingBadges() {
             >
               <motion.div
                 animate={{
-                  y: [0, idx % 2 === 0 ? -10 : 10, 0],
-                  rotate: [0, idx % 2 === 0 ? 2 : -2, 0]
+                  y: [0, idx % 2 === 0 ? -6 : 6, 0],
+                  rotate: [0, idx % 2 === 0 ? 1.5 : -1.5, 0]
                 }}
                 transition={{
                   duration: 4.5 + idx,
