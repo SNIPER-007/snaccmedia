@@ -50,7 +50,7 @@ export default function Navbar({ onOpenContact }) {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center min-h-[130px] transition-all duration-300 ${
           isScrolled
             ? 'py-3.5 bg-[#0A090F]/92 backdrop-blur-xl border-b border-white/10 shadow-2xl shadow-black/60'
             : 'py-5 sm:py-6 bg-transparent'
